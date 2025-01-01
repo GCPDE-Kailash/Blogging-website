@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+</head>
+<body>
+    <h1>Add a New Blog Post</h1>
+    <form method="POST" class="mb-3">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="Technology">Technology</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Education">Education</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="tags" class="form-label">Tags (comma-separated)</label>
+            <input type="text" class="form-control" id="tags" name="tags">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

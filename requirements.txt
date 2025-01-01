@@ -1,0 +1,5 @@
+gunicorn
+flask-login flask-bcrypt
+flask
+flask-sqlalchemy
+flask-admin
