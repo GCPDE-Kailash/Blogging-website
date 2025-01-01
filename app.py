@@ -59,11 +59,10 @@ admin.add_view(PostAdmin(Post, db.session))
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 # Routes
 @app.route('/')
 def home():
-    posts = Post.query.all()
+    posts = Post.query.all()  # Fetch all posts from the database
     return render_template('index.html', posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -112,6 +111,11 @@ def add_post():
 def view_category(category):
     posts = Post.query.filter_by(category=category).all()
     return render_template('index.html', posts=posts, filter=f"Category: {category}")
+# Define the route for viewing a single post
+@app.route('/post/<int:post_id>')
+def view_post(post_id):
+    post = Post.query.get_or_404(post_id)  # Fetch post by ID
+    return render_template('post_detail.html', post=post)  # Replace 'post_detail.html' with your post detail template
 
 @app.route('/tag/<tag>')
 def view_tag(tag):

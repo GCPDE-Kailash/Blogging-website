@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     
-    
-
     <title>My Blog</title>
 </head>
 <body class="bg-light">
@@ -29,12 +27,21 @@
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <p class="card-text">{{ post.content }}</p>
-                        <p class="text-muted">Category: <a href="{{ url_for('view_category', category=post.category) }}">{{ post.category }}</a></p>
+                        <!-- Link to view post details -->
+                        <a href="{{ url_for('view_post', post_id=post.id) }}">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                        </a>
+                        <p class="card-text">{{ post.content[:100] }}...</p> <!-- First 100 characters of the post -->
+                        
+                        <!-- Category link -->
+                        <p class="text-muted">Category: 
+                            <a href="{{ url_for('view_category', category=post.category) }}">{{ post.category }}</a>
+                        </p>
+                        
+                        <!-- Tags links -->
                         <p class="text-muted">Tags:
                             {% for tag in post.tags %}
-                            <a href="{{ url_for('view_tag', tag=tag) }}" class="badge bg-secondary">{{ tag }}</a>
+                            <a href="{{ url_for('view_tag', tag=tag.name) }}" class="badge bg-secondary">{{ tag.name }}</a>
                             {% endfor %}
                         </p>
                     </div>
@@ -44,5 +51,4 @@
         </div>
     </div>
 </body>
-
 </html>
